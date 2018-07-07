@@ -1,8 +1,5 @@
 package com.company.factory;
 
-import com.company.dao.ICustomerDao;
-import com.company.service.ICustomerService;
-
 import java.util.ResourceBundle;
 
 public class BeanFactory {
@@ -15,7 +12,7 @@ public class BeanFactory {
     public static Object getBean(String beanName){
 
         try {
-            return (ICustomerService) Class.forName(bundle.getString("beanName")).newInstance();
+            return Class.forName(bundle.getString(beanName)).newInstance();
         } catch (Exception e) {
             throw new RuntimeException("erre message: " + e);
         }

@@ -10,7 +10,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 //    public ICustomerDao customerDao = new CustomerDaoImpl();
 
-    private ICustomerDao customerDao = (ICustomerDao) BeanFactory.getBean("CUSTOMERDAOå");
+    private ICustomerDao customerDao = (ICustomerDao) BeanFactory.getBean("CUSTOMERDAO");
 
     @Override
     public void saveCustomer() {
