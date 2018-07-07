@@ -24,7 +24,7 @@ public class BeanFactory {
                 beans.put(key,value);
             }
         } catch (Exception e) {
-            throw new ExceptionInInitializerError("creat bean failed.");
+            throw new ExceptionInInitializerError("create bean failed.");
         }
     }
 
