@@ -7,19 +7,15 @@ import java.util.ResourceBundle;
 
 public class BeanFactory {
 
-    private static ResourceBundle bundle = null;
+    //1. 只能用于读取.properties文件，别的文件读不了；
+    //2. 只能读，不能写；
+    //3. 只能读取类路径下的，不是类路径的读不了
+    private static ResourceBundle bundle = ResourceBundle.getBundle("bean");
 
-    public static ICustomerService getCustomerService() {
-        try {
-            return (ICustomerService) Class.forName("com.company.service.impl.CustomerServiceImpl").newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException("erre message: " + e);
-        }
-    }
+    public static Object getBean(String beanName){
 
-    public static ICustomerDao getICustomerDao() {
         try {
-            return (ICustomerDao) Class.forName("com.company.dao.impl.CustomerDaoImpl").newInstance();
+            return (ICustomerService) Class.forName(bundle.getString("beanName")).newInstance();
         } catch (Exception e) {
             throw new RuntimeException("erre message: " + e);
         }
