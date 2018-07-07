@@ -1,9 +1,12 @@
 package com.company;
 
+import com.company.factory.BeanFactory;
+import com.company.service.ICustomerService;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("Hello");
+        ICustomerService customerService = BeanFactory.getCustomerService();
+        customerService.saveCustomer();
     }
 }
