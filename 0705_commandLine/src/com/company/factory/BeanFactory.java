@@ -1,5 +1,8 @@
 package com.company.factory;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class BeanFactory {
@@ -9,13 +12,25 @@ public class BeanFactory {
     //3. 只能读取类路径下的，不是类路径的读不了
     private static ResourceBundle bundle = ResourceBundle.getBundle("bean");
 
-    public static Object getBean(String beanName){
+    private static Map<String, Object> beans = new HashMap<>();
 
+    static {
         try {
-            return Class.forName(bundle.getString(beanName)).newInstance();
+            Enumeration<String> keys = bundle.getKeys();
+            while (keys.hasMoreElements()) {
+                String key = keys.nextElement();
+                String beanPath = bundle.getString(key);
+                Object value = Class.forName(beanPath).newInstance();
+                beans.put(key,value);
+            }
         } catch (Exception e) {
-            throw new RuntimeException("erre message: " + e);
+            throw new ExceptionInInitializerError("creat bean failed.");
         }
+    }
+
+
+    public static Object getBean(String beanName) {
+        return beans.get(beanName);
     }
 }
 
