@@ -3,7 +3,11 @@ package com.company.factory;
 import com.company.dao.ICustomerDao;
 import com.company.service.ICustomerService;
 
+import java.util.ResourceBundle;
+
 public class BeanFactory {
+
+    private static ResourceBundle bundle = null;
 
     public static ICustomerService getCustomerService() {
         try {
